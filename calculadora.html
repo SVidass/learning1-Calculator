@@ -18,6 +18,7 @@
             height: 100vh;
             color: whitesmoke;
             text-align: center;
+            
             }
 
           @font-face {
@@ -85,7 +86,7 @@
                 </tr>
                 <tr>
                     <td><button class="botao" onclick="insert('1/')">¹/x</button></td>
-                    <td><button class="botao" onclick="insert('<sup>*2</sup>')">x²</button></td>
+                    <td><button class="botao" onclick="insert('^')">x²</button></td>
                     <td><button class="botao" onclick="insert('√')">√x</button></td>
                     <td><button class="botao" onclick="insert('/')">÷</button></td>
                 </tr>
@@ -110,7 +111,7 @@
                 <tr>
                     <td><button class="botao" onclick="insert('~')">+/-</button></td>
                     <td><button class="botao" onclick="insert('0')">0</button></td>
-                    <td><button class="botao" onclick="insert(',')">,</button></td>
+                    <td><button class="botao" onclick="insert('.')">,</button></td>
                     <td><button class="botao" onclick="calcular()">=</button></td>
                 </tr>
             </table>
@@ -132,6 +133,9 @@
            else if (num=='~'){
             document.getElementById('resultado').innerHTML= numero * -1
            }
+           else if(num==='^') {
+     document.getElementById('resultado').innerHTML = Math.pow(parseFloat(numero), 2);
+     return; }
            else {
             document.getElementById('resultado').innerHTML = numero + num}
         }
@@ -160,6 +164,16 @@
             {
                 document.getElementById('resultado').innerHTML = "0"
             }
+            function calcularPotencia() {
+  var numero = document.getElementById('resultado').innerHTML;
+  var posicao = numero.indexOf('^');
+  if (posicao !== -1) {
+    var base = parseFloat(numero.slice(0, posicao));
+    var expoente = parseFloat(numero.slice(posicao + 1));
+    var resultado = Math.pow(base, expoente);
+    document.getElementById('resultado').innerHTML = resultado;
+  }
+}
         }
 
     </script>
